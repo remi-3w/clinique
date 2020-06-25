@@ -2,31 +2,31 @@
 
 class Chat extends Animal
 {
-        protected $genre;
+        private $id;
 
-        //Un setter ou mutateur sert à définir
-        public function SetGenre($newgenre)
+
+        public function Setid($newid)
         {
-                $this->genre = $newgenre;
+                $this->id = $newid;
         }
         //Un getter ou accesseur sert à récupérer
-        public function GetGenre()
+        public function Getid()
         {
-                return $this->genre;
+                return $this->id;
         }
 }
 
-// chat1
-$chat = new Chat("Belle");
-$chat->SetPedigree("Chartreux");
-$chat->SetGenre("femelle");
+// // chat1
+// $chat = new Chat("Belle");
+// $chat->SetPedigree("Chartreux");
+// $chat->SetGenre("femelle");
 
-// // chat 2
-$chat1 = new Chat("miaouss");
-$chat1->SetPedigree("Siamois");
-$chat1->SetGenre("femelle");
+// // // chat 2
+// $chat1 = new Chat("miaouss");
+// $chat1->SetPedigree("Siamois");
+// $chat1->SetGenre("femelle");
 
-// //chat3
-$chat2 = new Chat("serpillère");
-$chat2->SetPedigree("Selkyrex");
-$chat2->SetGenre("male");
+// // //chat3
+// $chat2 = new Chat("serpillère");
+// $chat2->SetPedigree("Selkyrex");
+// $chat2->SetGenre("male");

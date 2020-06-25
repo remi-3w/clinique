@@ -1,7 +1,8 @@
 <?php
+
 class DB
 {
-    public $host = "127.0.0.1";
+    public $host = "localhost";
     public $database = "clinique";
     public $username = "root";
     public $pswd = '';

@@ -1,5 +1,3 @@
-<?php require_once 'controler/connexion.php' ?>
-
 </body>
 
 </html>

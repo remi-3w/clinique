@@ -2,30 +2,30 @@
 
 class Chien extends Animal
 {
-        private $color;
+        private $id;
 
 
-        public function SetColor($newcolor)
+        public function Setid($newid)
         {
-                $this->color = $newcolor;
+                $this->id = $newid;
         }
         //Un getter ou accesseur sert à récupérer
-        public function GetColor()
+        public function Getid()
         {
-                return $this->color;
+                return $this->id;
         }
 }
 // chien1
-$chien = new Chien("malicia");
-$chien->SetPedigree("labrador");
-$chien->SetColor("noire");
+// $chien = new Chien("malicia");
+// $chien->SetPedigree("labrador");
+// $chien->SetColor("noire");
 
 // chien 2
-$chien1 = new Chien("paloo");
-$chien1->SetPedigree("berger Blanc");
-$chien1->SetColor("blanche");
+// $chien1 = new Chien("paloo");
+// $chien1->SetPedigree("berger Blanc");
+// $chien1->SetColor("blanche");
 
 //chien3
-$chien2 = new Chien("medor");
-$chien2->SetPedigree("caniche");
-$chien2->SetColor("gris");
+// $chien2 = new Chien("medor");
+// $chien2->SetPedigree("caniche");
+// $chien2->SetColor("gris");

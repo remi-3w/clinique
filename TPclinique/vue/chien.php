@@ -1,75 +1,62 @@
 <?php
-require 'header.php';
+require("controler/connexion.php");
+require("header.php");
 include("class/class.animal.php");
 include("class/class.chien.php");
+$DB = new DB();
+
+$query = $DB->db->prepare(
+  'SELECT
+  *
+FROM clinique.animal
+INNER JOIN clinique.propriétaire
+ON animal.idPropriétaire = clinique.propriétaire.id
+INNER JOIN clinique.chien
+ON animal.id = clinique.chien.idAnimal'
+  // ORDER BY animal.id'
+);
+
+$query->execute();
+
+
+$animals = $query->fetchAll(PDO::FETCH_ASSOC);
+
+
+// var_dump($animals);
+
+// $query2 = $DB->db->prepare(
+//   'SELECT
+//   *
+// FROM clinique.propriétaire
+// ORDER BY id'
+// );
+
+// $query2->execute();
+
+
+// $propriétaire = $query2->fetchAll(PDO::FETCH_ASSOC);
+// var_dump($propriétaire);
 ?>
+<div class="container-fluid row justify ">
+  <?php
+  foreach ($animals as $animal) :
+  ?>
 
-<div class="container-fluid center right row ">
-  <div class="card m-3 " style="width: 18rem;">
-    <img src="asset/labrador.jpg " class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title"><?php echo $chien->getNom() ?></h5>
-      <p class="card-text"><?php echo $chien->getPedigree() ?></p>
-      <p class="card-text"><?php echo $chien->getColor() ?></p>
-      <p class="card-text">{{date de naissance}}</p>
-      <a href="/<?php echo "vue" . "/" . $chien->getNom() . "." . "php" ?>" class="btn btn-primary">plus d'info sur <?php echo $chien->getNom() ?></a>
+    <div class="card m-2 p-0  " style="width: 13rem;">
+      <p>Animal enregistré n°<?= $animal['idAnimal'] ?>
+        <img src="asset/bergerblanc.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Nom :<?= $animal['nomAnimal'] ?></h5>
+          <p class="card-text">Né le : <?= $animal['dateNaissance'] ?></p>
+          <p class="card-text">décedé le : <?= $animal['datedécès'] ?></p>
+          <p class="card-text">Appartient à : <?= $animal['Prénom'] ?></p>
+          <p class="card-text">taille : <?= $animal['taille'] ?> cm</p>
+          <p class="card-text">Poids : <?= $animal['poids'] ?> kg</p>
+          <a href="/<?php echo "vue" . "/" . $animal['nom'] . "." . "php" ?>" class="btn btn-primary">plus d'info sur <?php echo $animal['nom'] ?></a>
+        </div>
     </div>
-  </div>
-  <div class="card m-3 " style="width: 18rem;">
-    <img src="asset/bergerblanc.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title"> <?php echo "Nom :" . " " . $chien1->getNom() ?></h5>
-      <p class="card-text"><?php echo "race:" . " " . $chien1->getPedigree() ?></p>
-      <p class="card-text"><?php echo "couleur:" . " " . $chien1->getColor() ?></p>
-      <p class="card-text">{{date de naissance}}</p>
-      <a href="/<?php echo $chien1->getNom() . "php" ?>" class="btn btn-primary ">plus d'info sur <?php echo $chien1->getNom() ?></a>
-    </div>
-  </div>
-  <div class="card m-3 " style="width: 18rem;">
-    <img src="asset/caniche.jpg " class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title"><?php echo $chien2->getNom() ?></h5>
-      <p class="card-text"><?php echo $chien2->getPedigree() ?></p>
-      <p class="card-text"><?php echo $chien2->getColor() ?></p>
-      <p class="card-text">{{date de naissance}}</p>
-      <a href="#" class="btn btn-primary ">plus d'info sur <?php echo $chien2->getNom() ?></a>
-    </div>
-  </div>
-  <div class="card m-3 text-center" style="width: 18rem;">
-    <img src="https://via.placeholder.com/150 " class="card-img-top" alt="...">
-    <div class="card-body">
 
-      <h2 class="card-title">Ajouter</h2>
-      <a href="tp.php">
-        <p class="card-text"><i class="far fa-calendar-plus" style=" font-size: 5rem;"></i></p>
-      </a>
-    </div>
-  </div>
-  <div class="card m-3 text-center " style="width: 18rem;">
-    <img src="https://via.placeholder.com/150 " class="card-img-top" alt="...">
-    <div class="card-body">
-
-      <h2 class="card-title">Ajouter</h2>
-      <a href="tp.php">
-        <p class="card-text"><i class="far fa-calendar-plus" style=" font-size: 5rem;"></i></p>
-      </a>
-    </div>
-  </div>
-  <div class="card m-3 text-center" style="width: 18rem;">
-    <img src="https://via.placeholder.com/150 " class="card-img-top" alt="...">
-    <div class="card-body">
-
-      <h2 class="card-title">Ajouter</h2>
-      <a href="tp.php">
-        <p class="card-text"><i class="far fa-calendar-plus" style=" font-size: 5rem;"></i></p>
-      </a>
-    </div>
-  </div>
-
-
+  <?php endforeach ?>
 </div>
-
-
 <?php
-require 'footer.php';
-?>
+require 'footer.php'; ?>
